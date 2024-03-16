@@ -23,5 +23,11 @@ public class RotatePlanet : MonoBehaviour
                                                          // Then set that equal to the Vector3 previousMousePosition variable
             Debug.Log("Previous Mouse Position: " + previousMousePosition); // Prints the mouse position at the time when the mouse was clicked
         }
+
+        if (Input.GetMouseButton(0)) // Checks if the left mouse button is being held down, not just pressed and then released
+        {
+            Vector3 mouseDelta = Input.mousePosition - previousMousePosition; /* Use vector subtraction to find the vector going from the
+                                                                                 previousMousePosition (tail) to the curent mouse position (head) */
+        }
     }
 }
