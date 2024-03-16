@@ -12,6 +12,7 @@ public class RotatePlanet : MonoBehaviour
     }
 
     // Update is called once per frame
+    // Time between frames can vary so logic inside of this method should account for that for consistent behavior
     void Update()
     {
         
