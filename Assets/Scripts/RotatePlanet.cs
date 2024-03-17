@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class RotatePlanet : MonoBehaviour
 {
     private Vector3 previousMousePosition; // Stores the mouse xyz position in a Vector3
+    private Transform cameraTransform; // Store the transform (position, rotation, scale) in the variable cameraTransform
 
     // Start is called before the first frame update
     // Start will not run unless that game object it's attached to is in the scene hierarchy and is also active and enabled
     void Start()
     {
-        
+        cameraTransform = Camera.main.transform; // Camera.main returns first camera named "Main Camera" in scene
     }
 
     // Update is called once per frame
