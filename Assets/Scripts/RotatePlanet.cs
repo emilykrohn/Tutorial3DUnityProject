@@ -24,6 +24,7 @@ public class RotatePlanet : MonoBehaviour
         {
             previousMousePosition = Input.mousePosition; // Get the current pixel coordinates that mouse is at in a Vector3
                                                          // Then set that equal to the Vector3 previousMousePosition variable
+            
             Debug.Log("Previous Mouse Position: " + previousMousePosition); // Prints the mouse position at the time when the mouse was clicked
         }
 
@@ -31,6 +32,7 @@ public class RotatePlanet : MonoBehaviour
         {
             Vector3 mouseDelta = Input.mousePosition - previousMousePosition; /* Use vector subtraction to find the vector going from the
                                                                                  previousMousePosition (tail) to the curent mouse position (head) */
+            
             float rotationX = mouseDelta.y * rotationSpeed * Time.deltaTime; // mouseDelta.y is the verical movement of the mouse since the previous frame
                                                                              // Time.deltaTime makes sure that the rotation speed is the same for different devices
                                                                              // it's mouseDelta.y and not x because you're rotating on the x-axis when moving up and down
@@ -39,10 +41,22 @@ public class RotatePlanet : MonoBehaviour
                                                                             // rotationX is a number (float) and the larger the distance from the previous mouse position and
                                                                                 // current mouse position, the larger that number is going to be
                                                                                 // this means that the amount it rotates by will be more than if the difference was smaller
+            
             float rotationY = -mouseDelta.x * rotationSpeed * Time.deltaTime; // mouseDelta.x is negative because mouseDelta.x is relative to the objects local coordinate system
-                                                                                // if you were viewing from the perspective of the object, then you wouldn't need a negative
-                                                                                // however, we need a negative sign to make it rotate in the opposite direction to make it rotate
-                                                                                    // the correct way from our perspective looking at it
+                                                                              // if you were viewing from the perspective of the object, then you wouldn't need a negative
+                                                                              // however, we need a negative sign to make it rotate in the opposite direction to make it rotate
+                                                                              // the correct way from our perspective looking at it
+            Vector3 rotationAxis = cameraTransform.TransformDirection(Vector3.up);
+
+            transform.Rotate(rotationAxis, rotationY, Space.World); // this is the transform of the object that this script is attached to
+                                                                    // this rotation would only move left to right and not at an angle
+                                                                    // rotationAxis (vertical to the camera view) is the axis the Rotate function will use to rotate around
+                                                                    // rotationY tells the function how much to rotate the object, larger the number, the further the object will rotate
+                                                                    // Space.World tells the function the rotation is in the world space and not the local space of the object
+            
+            transform.Rotate(Vector3.right, rotationX, Space.World); // rotates only directly up and down
+
+            // After both Rotate functions run, then the object will rotate and the angle the player wants to move to object in with their mouse
         }
     }
 }
