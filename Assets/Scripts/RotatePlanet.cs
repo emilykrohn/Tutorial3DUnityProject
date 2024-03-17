@@ -57,6 +57,9 @@ public class RotatePlanet : MonoBehaviour
             transform.Rotate(Vector3.right, rotationX, Space.World); // rotates only directly up and down
 
             // After both Rotate functions run, then the object will rotate and the angle the player wants to move to object in with their mouse
+
+            previousMousePosition = Input.mousePosition; // Since Input.GetMouseButtonDown(0) only is true when the mouse button is initially pressed down
+                                                            // Therefore, this line of code needs to be there to save the current mouse position as the previous mouse position for the next frame
         }
     }
 }
