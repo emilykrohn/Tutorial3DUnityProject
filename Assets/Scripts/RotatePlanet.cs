@@ -7,6 +7,7 @@ public class RotatePlanet : MonoBehaviour
 {
     private Vector3 previousMousePosition; // Stores the mouse xyz position in a Vector3
     private Transform cameraTransform; // Store the transform (position, rotation, scale) in the variable cameraTransform
+    public float rotationSpeed = 5.0f;
 
     // Start is called before the first frame update
     // Start will not run unless that game object it's attached to is in the scene hierarchy and is also active and enabled
@@ -30,6 +31,18 @@ public class RotatePlanet : MonoBehaviour
         {
             Vector3 mouseDelta = Input.mousePosition - previousMousePosition; /* Use vector subtraction to find the vector going from the
                                                                                  previousMousePosition (tail) to the curent mouse position (head) */
+            float rotationX = mouseDelta.y * rotationSpeed * Time.deltaTime; // mouseDelta.y is the verical movement of the mouse since the previous frame
+                                                                             // Time.deltaTime makes sure that the rotation speed is the same for different devices
+                                                                             // it's mouseDelta.y and not x because you're rotating on the x-axis when moving up and down
+                                                                                // If there was a line that went though the sphere and it rotated on it, the line would be horizontal
+                                                                                // But the movement would be up and down to make that horizontal so it's using the y / verical movement of the mouse
+                                                                            // rotationX is a number (float) and the larger the distance from the previous mouse position and
+                                                                                // current mouse position, the larger that number is going to be
+                                                                                // this means that the amount it rotates by will be more than if the difference was smaller
+            float rotationY = -mouseDelta.x * rotationSpeed * Time.deltaTime; // mouseDelta.x is negative because mouseDelta.x is relative to the objects local coordinate system
+                                                                                // if you were viewing from the perspective of the object, then you wouldn't need a negative
+                                                                                // however, we need a negative sign to make it rotate in the opposite direction to make it rotate
+                                                                                    // the correct way from our perspective looking at it
         }
     }
 }
