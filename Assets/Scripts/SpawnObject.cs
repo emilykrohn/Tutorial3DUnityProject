@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class SpawnObject : MonoBehaviour
 {
+    private GameManager gm;
+    public int cost;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        gm = FindAnyObjectByType<GameManager>();
     }
 }
