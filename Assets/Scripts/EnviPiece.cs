@@ -22,6 +22,13 @@ public class EnviPiece : MonoBehaviour
         {
             Ray ray = mainCam.ScreenPointToRay(Input.mousePosition); // Creates a ray that starts at the camera and ends at where the mouse is
             RaycastHit hitInfo;
+
+            if(Physics.Raycast(ray, out hitInfo)) // hitInfo is pass by reference, allows the function to put info about the object the ray hit in it
+                                                  // if function returns true, then it hit a game object
+                                                  // if function returns false, then hitInfo will not be changed
+            {
+
+            }
         }
     }
 }
